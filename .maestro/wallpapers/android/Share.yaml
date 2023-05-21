@@ -1,0 +1,6 @@
+appId: ${APP_ID}
+---
+- tapOn:
+    id: "shareIconButton"
+- assertVisible: ".*Nearby.*"
+- assertVisible: ".*Edit.*"

@@ -1,0 +1,46 @@
+appId: ${APP_ID}
+---
+
+- launchApp
+
+- runFlow: Date.yaml
+
+- runScript:
+    when:
+      platform: iOS
+    file: ios/init.js
+
+- runScript:
+    when:
+      platform: Android
+    file: android/init.js
+
+- tapOn:
+    id: ${output.wallpapers.wallpaperItem}
+    index: 0
+
+- assertVisible: ".*alien.*"
+
+- runFlow:
+    when:
+      platform: iOS
+    file: Date.yaml
+
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - assertVisible:
+          id: "setWallpaperIconButton"
+      - tapOn:
+            id: "setWallpaperIconButton"
+
+- runFlow:
+    when:
+      platform: iOS
+    file: ios/Share.yaml
+
+- runFlow:
+    when:
+      platform: Android
+    file: android/Share.yaml
